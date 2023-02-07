@@ -6,6 +6,7 @@ const createSendToken = (user, statusCode, res) => {
     ),
   };
   const token = user.getJWTToken();
+  window.localStorage.setItem('token', token);
   res.status(statusCode).cookie('token', token, options).json({
     success: true,
     token,

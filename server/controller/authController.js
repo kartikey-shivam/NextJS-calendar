@@ -6,9 +6,12 @@ const catchAsync = require('../utils/catchAsync');
 const User = require('./../model/userModel');
 exports.isAuthenticated = catchAsync(async (req, res, next) => {
   let token;
+  console.log('header', req.headers);
+
   if (req.headers.authorization) {
     token = req.headers.authorization;
   }
+  console.log('token', token);
 
   if (!token) {
     return next(

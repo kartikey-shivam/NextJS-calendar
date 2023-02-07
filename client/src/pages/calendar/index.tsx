@@ -20,7 +20,18 @@ export default function Calendar() {
     console.log(calendarRef, "hello");
   };
   const handleEventAdd = async (data: any) => {
-    await axios.post("http://localhost:8000/calendar/create-event", data.event);
+    const token = window.localStorage.getItem("token");
+    console.log(token, "header");
+    await axios.post(
+      "http://localhost:8000/calendar/create-event",
+      data.event,
+      {
+        headers: {
+          "content-type": "text/json",
+          Authorization: token,
+        },
+      }
+    );
   };
   // const handleDatesSet = async (data: any) => {
   //   console.log(data, "data");
